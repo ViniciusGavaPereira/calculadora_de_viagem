@@ -1,19 +1,11 @@
-import json
 import pandas as pd 
 from Membro import Membro
-
+from util import *
 'Importação da base de dados'
 url = 'C:/Users/vini-/Downloads/FinancasViagem.xlsx'
 db = pd.read_excel(url, sheet_name='balanco')
 
-
-
-
-Felps = Membro('Felipe',[{'Amanda':30}])
-
-'Cria uma lista de objetos com os membros '
-
-'Pessoas que participaram da viagem:'
+'Lista de pessoas que participaram da viagem:'
 membros = list(db.keys())
 membros.remove('Pagante')
 membros.remove('Valor')
@@ -22,10 +14,22 @@ membros.remove('Compra')
 'Quem pagou por certo item:'
 compras = pd.DataFrame(db[membros])
 
+'Cria uma lista de objetos com os membros da lista atual'
+lista_membros = gerador_lista(membros)
+lista_membros[0].receber.append({"amanda":50})
+lista_membros[0].receber.append({"amanda":50})
+print(lista_membros[0].receber)
+
+
+
+'''
 'Cria uma coluna com o valor a ser pago'
 
 db['Valor_para_pagar'] = round(db['Valor'] / compras.sum(axis='columns'),2)
 print(db['Valor_para_pagar'][0])
+
+
+
 
 capturador = db[membros[1]]
 'Percorre a coluna'
@@ -66,3 +70,5 @@ while(loop < len(db.axes[1])):
 '--Nome da pessoa: valor a receber'
 'Pula para outra coluna'
 'Repete o processo'
+
+'''
