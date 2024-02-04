@@ -1,13 +1,11 @@
 class Membro():
-    def __init__(self,nome,vendas) -> None:
+    def __init__(self,nome) -> None:
         self.nome = nome
-        self.vendas = vendas
         self.receber = [{}]
 
 class Membro():
-    def __init__(self,nome,vendas,receber) -> None:
+    def __init__(self,nome,receber) -> None:
         self.nome = nome
-        self.vendas = vendas
         self.receber = receber
 
 

@@ -9,7 +9,7 @@ db = pd.read_excel(url, sheet_name='balanco')
 
 
 
-Felps = Membro('Felipe',100,[{'Amanda':30}])
+Felps = Membro('Felipe',[{'Amanda':30}])
 
 'Cria uma lista de objetos com os membros '
 
@@ -22,10 +22,10 @@ membros.remove('Compra')
 'Quem pagou por certo item:'
 compras = pd.DataFrame(db[membros])
 
-
 'Cria uma coluna com o valor a ser pago'
 
-db['valor_para_pagar'] = round(db['Valor'] / compras.sum(axis='columns'),2)
+db['Valor_para_pagar'] = round(db['Valor'] / compras.sum(axis='columns'),2)
+print(db['Valor_para_pagar'][0])
 
 capturador = db[membros[1]]
 'Percorre a coluna'
@@ -36,9 +36,26 @@ membroAtual = ''
 
 while(loop < len(db.axes[1])):
     membroAtual = membros[loop - 4]
-    print('Membro atual: ' + membroAtual)
-    print(db.iloc[:,:loop])
+    pagamento = 0
+
+    "print('Membro atual: ' + membroAtual)"
+
+    while(loop2 < len(db.iloc[:,:loop])):
+            celula = db.at[loop2,membroAtual]
+                    
+            if celula == 1:
+                
+             pagamento = pagamento + db['Valor_para_pagar'][loop2]
+        
+            loop2 = loop2 + 1
+    
+    print(f'Valor total de {membroAtual}: {round(pagamento,2)}') 
+    
+
+    'print(db.iloc[:,:loop])'
+    loop2 = 0
     loop = loop + 1
+
 
 'Compara o nome do header da lista, com o comprador'
 '-Caso seja igual, ele pula'
