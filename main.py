@@ -39,12 +39,15 @@ while(loop < len(db.axes[1])):
     pagamento = 0
 
     "print('Membro atual: ' + membroAtual)"
+    print(f'Membro atual: {membroAtual}')
 
-    while(loop2 < len(db.iloc[:,:loop])):
+    while(loop2 < len(db.iloc[:,:loop2])):
             celula = db.at[loop2,membroAtual]
+            recebedor = db.at[loop2,'Pagante']
                     
-            if celula == 1:
-                
+            if (celula == 1) & (membroAtual != recebedor):
+             print("Quem vai pagar: ", membroAtual)
+             print("Quem vai receber: ", recebedor)   
              pagamento = pagamento + db['Valor_para_pagar'][loop2]
         
             loop2 = loop2 + 1
