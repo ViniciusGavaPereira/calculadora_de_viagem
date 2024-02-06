@@ -16,8 +16,8 @@ compras = pd.DataFrame(db[membros])
 
 'Cria uma lista de objetos com os membros da lista atual'
 lista_membros = gerador_lista(membros)
-lista_membros[0].receber.append({"amanda":50})
-lista_membros[0].receber.append({"amanda":50})
+lista_membros[0].adicionarValor({"amanda":50})
+lista_membros[0].adicionarValor({"amanda":50})
 print(lista_membros[0].receber)
 
 

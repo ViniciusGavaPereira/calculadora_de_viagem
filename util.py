@@ -8,3 +8,5 @@ def busca(nome, lista):
 def gerador_lista(lista) -> list:
     x = [Membro(pessoa) for pessoa in lista]
     return x
+
+
