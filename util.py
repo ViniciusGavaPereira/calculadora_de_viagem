@@ -9,7 +9,7 @@ def gerador_lista(lista) -> list:
     return x
 
 
-def pegar_nome(nome_procurado, lista) -> bool:
+def pegar_nome(nome_procurado, lista) -> int:
     for index, dicionario in enumerate(lista):
         if 'Nome' in dicionario and dicionario['Nome'] == nome_procurado:
             print("Encontrado:", dicionario)
@@ -20,22 +20,12 @@ def adicionarValor(Membro, dic):
 
         
         'nome = list(test.values())[0]'        
-        
-        print("Vamos ver isso aqui SELF: " , pegar_nome(dic['Nome'],Membro.receber))
-        print("Vamos ver isso aqui DIC[NOME]: " , dic['Nome'])
+        index_encontrado = pegar_nome(dic['Nome'],Membro.receber)
+        print("Encontrado: " , index_encontrado)
 
-        for dic['Nome'] in Membro.receber:
-        
-            '''
-                print("NOME: ", list(dic['Nome'])[0])
-            print('EXISTE')
-            print("Dicionario novo", dic)
-            print('Dicionario existente',  self.receber)
-            print('Valor puro: ',  self.receber[0]['Valor'])
-            '''
-            Membro.receber[0]['Valor'] = Membro.receber[0]['Valor'] + dic['Valor']
-            break
-
+        if(index_encontrado != None):
+            print("Existe")
+            Membro.receber[index_encontrado]['Valor'] = Membro.receber[index_encontrado]['Valor'] + dic['Valor']
         else:
             print('NÃO EXISTE')
             Membro.receber.append(dic)
