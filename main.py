@@ -1,6 +1,7 @@
 import pandas as pd 
 from Membro import Membro
 from util import *
+
 'Importação da base de dados'
 url = 'C:/Users/vini-/Downloads/FinancasViagem.xlsx'
 db = pd.read_excel(url, sheet_name='balanco')
@@ -16,19 +17,11 @@ compras = pd.DataFrame(db[membros])
 
 'Cria uma lista de objetos com os membros da lista atual'
 lista_membros = gerador_lista(membros)
-lista_membros[0].adicionarValor({"Nome":'Gabi','Valor':50})
-lista_membros[0].adicionarValor({"Nome":'Gabi','Valor':100})
 
-
-lista_membros[0].adicionarValor({"Nome":'Fernando','Valor':100})
-lista_membros[0].adicionarValor({"Nome":'Fernando','Valor':30})
-
-print(vars(lista_membros[0]))
-'''
 'Cria uma coluna com o valor a ser pago'
 
 db['Valor_para_pagar'] = round(db['Valor'] / compras.sum(axis='columns'),2)
-print(db['Valor_para_pagar'][0])
+"print(db['Valor_para_pagar'][0])"
 
 
 
@@ -41,36 +34,40 @@ membroAtual = ''
 
 
 while(loop < len(db.axes[1])):
+    'Quem deve pagar'
     membroAtual = membros[loop - 4]
-    pagamento = 0
-
-    "print('Membro atual: ' + membroAtual)"
-    print(f'Membro atual: {membroAtual}')
 
     while(loop2 < len(db.iloc[:,:loop2])):
+            'Valor que armazena se a pessoa participou ou não da compra'
             celula = db.at[loop2,membroAtual]
-            recebedor = db.at[loop2,'Pagante']
-                    
-            if (celula == 1) & (membroAtual != recebedor):
-             print("Quem vai pagar: ", membroAtual)
-             print("Quem vai receber: ", recebedor)   
-             pagamento = pagamento + db['Valor_para_pagar'][loop2]
-        
-            loop2 = loop2 + 1
-    
-    print(f'Valor total de {membroAtual}: {round(pagamento,2)}') 
-    
 
-    'print(db.iloc[:,:loop])'
+            'Valor a pagar'
+            Valor_para_pagar = db['Valor_para_pagar'][loop2]
+
+            'Quem vai receber o valor'
+            recebedor = db.at[loop2,'Pagante']
+
+            try:
+                if (celula == 1) & (recebedor != membroAtual):
+                    recebedorAtual = busca(recebedor,lista_membros)[0]
+                    recebedorAtual.adicionarValor({'Nome': membroAtual, "Valor": round(Valor_para_pagar,2)})
+
+            except IndexError:
+                recebedorAtual = 'null'
+
+
+            loop2 = loop2 + 1
+        
+
     loop2 = 0
+    
     loop = loop + 1
 
 
-'Compara o nome do header da lista, com o comprador'
-'-Caso seja igual, ele pula'
-'-Caso seja diferente, ele acrescenta na lista do comprador:'
+print(vars(lista_membros[3]))
+
+
 '--Nome da pessoa: valor a receber'
 'Pula para outra coluna'
 'Repete o processo'
 
-'''
