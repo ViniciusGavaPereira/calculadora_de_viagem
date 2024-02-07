@@ -1,4 +1,5 @@
 import pandas as pd 
+from Membro import Membro
 from util import *
 'Importação da base de dados'
 url = 'C:/Users/vini-/Downloads/FinancasViagem.xlsx'
@@ -15,12 +16,12 @@ compras = pd.DataFrame(db[membros])
 
 'Cria uma lista de objetos com os membros da lista atual'
 lista_membros = gerador_lista(membros)
-adicionarValor(lista_membros[0] , {"Nome":'Gabi','Valor':50})
-adicionarValor(lista_membros[0] , {"Nome":'Gabi','Valor':75})
+lista_membros[0].adicionarValor({"Nome":'Gabi','Valor':50})
+lista_membros[0].adicionarValor({"Nome":'Gabi','Valor':100})
 
 
-adicionarValor(lista_membros[0] , {"Nome":'Fernando','Valor':100})
-adicionarValor(lista_membros[0] , {"Nome":'Fernando','Valor':30})
+lista_membros[0].adicionarValor({"Nome":'Fernando','Valor':100})
+lista_membros[0].adicionarValor({"Nome":'Fernando','Valor':30})
 
 print(vars(lista_membros[0]))
 '''
