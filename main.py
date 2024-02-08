@@ -21,22 +21,19 @@ lista_membros = gerador_lista(membros)
 'Cria uma coluna com o valor a ser pago'
 
 db['Valor_para_pagar'] = round(db['Valor'] / compras.sum(axis='columns'),2)
-"print(db['Valor_para_pagar'][0])"
 
-
-
-
-capturador = db[membros[1]]
 'Percorre a coluna'
 loop = 4
 loop2 = 0
 membroAtual = ''
 
 
+"Percorre as colunas"
 while(loop < len(db.axes[1])):
     'Quem deve pagar'
     membroAtual = membros[loop - 4]
 
+    'Percorre as linhas'
     while(loop2 < len(db.iloc[:,:loop2])):
             'Valor que armazena se a pessoa participou ou não da compra'
             celula = db.at[loop2,membroAtual]
@@ -63,11 +60,9 @@ while(loop < len(db.axes[1])):
     
     loop = loop + 1
 
+criar_dataframe(lista_membros,membros)
 
-print(vars(lista_membros[3]))
 
+'print(vars(lista_membros[1]))'
 
-'--Nome da pessoa: valor a receber'
-'Pula para outra coluna'
-'Repete o processo'
 
