@@ -5,6 +5,10 @@ import pandas as pd
 def busca(nome, lista):
     return [x for x in lista if x.nome == nome]
 
+def busca_dividas(membro, nome):
+    
+    return [x.nome for x in membro.receber if x == nome]
+
 
 def gerador_lista(lista) -> list:
     x = [Membro(pessoa) for pessoa in lista]
@@ -28,17 +32,49 @@ def criador_de_linhas(lista,dt):
     pagantes = gerador_lista_2(lista)
     'print(vars(lista[0].receber[0]))'
     'print(dt[0])'
-
+    print("DT",dt)
     for x in range(len(lista)):
-     nova_linha = {'Pagadores:': pagantes[x].nome, str(dt[x+1]) : criador_de_celula(pagantes[x],dt[x+1])}
+     
+     nova_linha = [pagantes[x].nome]
 
+     y = 1
+     for y in range(len(dt)):
+         
+      
+      nova_linha.append(criador_de_celula(pagantes[x],dt))
+
+      y + 1
      'dt = pd.concat(lista[x].nome,columns=df.columns)'
 
 
 def criador_de_celula(membro,dt) -> int:
-    print('Entrou nessa porra')
-    print(vars(membro))
+
+    linha_vazia = []    
+    receber = membro.receber
+    x = 0
+
+    print("Membro: " , vars(membro))
+    print("Length: ", receber )
+
+    while (x < dt.size):
+        print('Entrou: ', x)
+        
+        if dt[x + 1][0] != membro.nome:
+            pagante = busca(dt[x + 1][0],receber)
+            print('Pagante: ' , pagante)
+
+        x = x + 1   
+         
+   
+
     return 1
+
+"""  
+    print()
+
+    print(vars(membro))
+"""
+
 
 def criar_dataframe(lista,membros) -> list:
     
