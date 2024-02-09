@@ -10,36 +10,62 @@ def gerador_lista(lista) -> list:
     x = [Membro(pessoa) for pessoa in lista]
     return x
 
+def gerador_lista_2(lista) -> list:
+    x = [pessoa for pessoa in lista]
+    return x
+
 def objeto_para_lista_nome(lista) -> list:
     x = [pessoa.nome for pessoa in lista]
     return x
 
 
 def objeto_para_lista_recebedor(lista) -> list:
-    x = [x.nome for x in lista]
+    x = [x.receber for x in lista]
     return x
 
 
-def objeto_para_lista_recebedor2(lista) -> list:
-    x = [x.nome for x in lista]
-    y = [y.receber for y in lista]
-    return {x, y}
+def criador_de_linhas(lista,dt):
+    pagantes = gerador_lista_2(lista)
+    'print(vars(lista[0].receber[0]))'
+    'print(dt[0])'
 
-def criador_de_linhas(lista,index) -> set:
-    
-    x = [objeto_para_lista_recebedor(dado,index) for dado in lista]
-    print(x)
-    return {x}
+    for x in range(len(lista)):
+     nova_linha = {'Pagadores:': pagantes[x].nome, str(dt[x+1]) : criador_de_celula(pagantes[x],dt[x+1])}
+
+     'dt = pd.concat(lista[x].nome,columns=df.columns)'
+
+
+def criador_de_celula(membro,dt) -> int:
+    print('Entrou nessa porra')
+    print(vars(membro))
+    return 1
 
 def criar_dataframe(lista,membros) -> list:
-    pagantes = objeto_para_lista_nome(lista)
+    
+    cabecalho = ['Pagadores:']
+
+    'Cria o cabeçalho'
+    for x in range(len(membros)):
+        cabecalho.append(membros[x])
+
+    df = pd.DataFrame(cabecalho).T
+
+   
+    df_completa = criador_de_linhas(lista,df)
+
+    print(df_completa)
     ''' 
     recebedores = membros
     dados = criador_de_linhas(lista)
     ''' 
-    print(objeto_para_lista_recebedor(lista))
+    
+"""
     "print(lista[2].receber[0]['Valor'])"
-    dt = pd.DataFrame(columns = pagantes)
+    dt = pd.DataFrame(columns = dataframe)
+    print(dt)
+    "criador_de_linhas(lista,dt)"
+
+"""
     
     
 
