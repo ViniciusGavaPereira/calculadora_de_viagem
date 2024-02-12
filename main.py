@@ -62,9 +62,10 @@ while(loop < len(db.axes[1])):
     
     loop = loop + 1
 
-criar_dataframe(lista_membros,membros)
+dataframe = criar_dataframe(lista_membros,membros)
 
 
+print(dataframe)
 'print(vars(lista_membros[1]))'
 
 

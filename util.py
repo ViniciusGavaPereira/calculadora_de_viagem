@@ -47,22 +47,22 @@ def criador_de_linhas(lista,dt):
      for y in range(len(dt)):
          
       
-      nova_linha.append(criador_de_celula(pagantes[x],dt))
+      nova_linha = criador_de_celula(nova_linha, pagantes[x],dt)
 
       y + 1
      'dt = pd.concat(lista[x].nome,columns=df.columns)'
 
 
-def criador_de_celula(membro,dt) -> int:
+def criador_de_celula(linha,membro,dt) -> int:
 
-    linha_vazia = []    
+    nova_linha = linha    
     receber = membro.receber
     x = 0
 
     print("Membro: " , vars(membro))
 
     
-    while (x < dt.size):
+    while (x + 1 < dt.size):
         
         quanto_vai_pagar = busca_dividas(receber,dt[x + 1][0])
         
@@ -78,12 +78,12 @@ def criador_de_celula(membro,dt) -> int:
             quanto_vai_pagar = 0
             
 
-        linha_vazia.append(quanto_vai_pagar)
+        nova_linha.append(quanto_vai_pagar)
         x += 1   
          
    
 
-    return linha_vazia
+    return nova_linha
 
 
 def criar_dataframe(lista,membros) -> list:
@@ -99,7 +99,7 @@ def criar_dataframe(lista,membros) -> list:
    
     df_completa = criador_de_linhas(lista,df)
 
-    print(df_completa)
+    return df_completa
     ''' 
     recebedores = membros
     dados = criador_de_linhas(lista)
