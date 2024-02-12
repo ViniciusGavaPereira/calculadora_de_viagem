@@ -1,6 +1,7 @@
 from sys import displayhook
 from Membro import Membro
 import pandas as pd 
+import numpy as np
 
 def busca(nome, lista):
     return [x for x in lista if x.nome == nome]
@@ -36,21 +37,28 @@ def objeto_para_lista_recebedor(lista) -> list:
 
 def criador_de_linhas(lista,dt):
     pagantes = gerador_lista_2(lista)
-    'print(vars(lista[0].receber[0]))'
-    'print(dt[0])'
-    print("DT",dt)
+
+ 
     for x in range(len(lista)):
      
      nova_linha = [pagantes[x].nome]
 
-     y = 1
      for y in range(len(dt)):
          
       
       nova_linha = criador_de_celula(nova_linha, pagantes[x],dt)
 
-      y + 1
-     'dt = pd.concat(lista[x].nome,columns=df.columns)'
+      print('Nova linha: ' , nova_linha)
+              
+      dt.loc[len(dt)] = nova_linha
+      
+
+  
+    print(dt)
+
+
+      
+
 
 
 def criador_de_celula(linha,membro,dt) -> int:
@@ -59,18 +67,11 @@ def criador_de_celula(linha,membro,dt) -> int:
     receber = membro.receber
     x = 0
 
-    print("Membro: " , vars(membro))
-
-    
-    while (x + 1 < dt.size):
+    while (x + 1 < len(dt.columns)):
         
-        quanto_vai_pagar = busca_dividas(receber,dt[x + 1][0])
+        quanto_vai_pagar = busca_dividas(receber,dt.iloc[0, x + 1])
         
         if dt[x + 1][0] != membro.nome:
-
-
-            
-            print('Pagante: ' , quanto_vai_pagar)
 
             if(quanto_vai_pagar == None):
                 quanto_vai_pagar = 0
@@ -100,23 +101,8 @@ def criar_dataframe(lista,membros) -> list:
     df_completa = criador_de_linhas(lista,df)
 
     return df_completa
-    ''' 
-    recebedores = membros
-    dados = criador_de_linhas(lista)
-    ''' 
-    
-"""
-    "print(lista[2].receber[0]['Valor'])"
-    dt = pd.DataFrame(columns = dataframe)
-    print(dt)
-    "criador_de_linhas(lista,dt)"
 
-"""
-    
-    
-
-    
-        
+  
 
 
         
