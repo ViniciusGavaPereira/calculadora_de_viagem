@@ -44,6 +44,8 @@ while(loop < len(db.axes[1])):
             'Quem vai receber o valor'
             recebedor = db.at[loop2,'Pagante']
 
+
+
             try:
                 if (celula == 1) & (recebedor != membroAtual):
                     recebedorAtual = busca(recebedor,lista_membros)[0]

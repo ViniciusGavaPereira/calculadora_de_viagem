@@ -5,9 +5,15 @@ import pandas as pd
 def busca(nome, lista):
     return [x for x in lista if x.nome == nome]
 
-def busca_dividas(membro, nome):
+def busca_dividas(list, nome):
     
-    return [x.nome for x in membro.receber if x == nome]
+    z = [x for x in list if x['Nome'] == nome]
+
+    if z != []:
+        return z[0]['Valor'] 
+    else:
+        return 0  
+
 
 
 def gerador_lista(lista) -> list:
@@ -54,26 +60,30 @@ def criador_de_celula(membro,dt) -> int:
     x = 0
 
     print("Membro: " , vars(membro))
-    print("Length: ", receber )
 
+    
     while (x < dt.size):
-        print('Entrou: ', x)
+        
+        quanto_vai_pagar = busca_dividas(receber,dt[x + 1][0])
         
         if dt[x + 1][0] != membro.nome:
-            pagante = busca(dt[x + 1][0],receber)
-            print('Pagante: ' , pagante)
 
-        x = x + 1   
+
+            
+            print('Pagante: ' , quanto_vai_pagar)
+
+            if(quanto_vai_pagar == None):
+                quanto_vai_pagar = 0
+        else: 
+            quanto_vai_pagar = 0
+            
+
+        linha_vazia.append(quanto_vai_pagar)
+        x += 1   
          
    
 
-    return 1
-
-"""  
-    print()
-
-    print(vars(membro))
-"""
+    return linha_vazia
 
 
 def criar_dataframe(lista,membros) -> list:
