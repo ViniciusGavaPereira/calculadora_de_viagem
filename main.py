@@ -3,7 +3,7 @@ from Membro import Membro
 from util import *
 
 'Importação da base de dados'
-url = 'C:/Users/vini-/Downloads/FinancasViagem.xlsx'
+url = 'dados/BalancoViagem.xlsx'
 db = pd.read_excel(url, sheet_name='balanco')
 
 'Lista de pessoas que participaram da viagem:'
@@ -67,6 +67,6 @@ dataframe = criar_dataframe(lista_membros,membros)
 final = pd.DataFrame(dataframe)
 print(final)
 
-final.to_excel("C:/Users/vini-/Downloads/FinancasViagem.xlsx",sheet_name='resultado',index=False,header=False)
+final.to_excel("dados/Resultado.xlsx",sheet_name='resultado',index=False,header=False)
 
 
