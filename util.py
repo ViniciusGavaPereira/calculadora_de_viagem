@@ -35,10 +35,22 @@ def objeto_para_lista_recebedor(lista) -> list:
     return x
 
 
+def gerador_cabecalho(membros) -> list :
+    cabecalho = ['Pagadores:']
+
+    'Cria o cabeçalho'
+    for x in range(len(membros)):
+        cabecalho.append(membros[x])
+
+    return cabecalho
+
+
 def criador_de_linhas(lista,dt):
     pagantes = gerador_lista_2(lista)
-    dt_Dataframe = pd.DataFrame(dt)
- 
+
+
+    dados = [gerador_cabecalho(objeto_para_lista_nome(pagantes))]
+
     for x in range(len(lista)):
      
      nova_linha = [pagantes[x].nome]
@@ -49,14 +61,10 @@ def criador_de_linhas(lista,dt):
       nova_linha = criador_de_celula(nova_linha, pagantes[x],dt)
 
               
-      teste = pd.DataFrame([nova_linha])
-      print('Dt', dt)
-      print("TEste: " , teste)
-      dt_Dataframe = dt_Dataframe.append(teste.T,ignore_index=True)
+      teste = list(nova_linha)
+      dados.append(teste)
       
-
-  
-    print(dt_Dataframe)
+    return dados
 
 
       
@@ -91,17 +99,12 @@ def criador_de_celula(linha,membro,dt) -> int:
 
 def criar_dataframe(lista,membros) -> list:
     
-    cabecalho = ['Pagadores:']
-
-    'Cria o cabeçalho'
-    for x in range(len(membros)):
-        cabecalho.append(membros[x])
+    cabecalho = gerador_cabecalho(membros)
 
     df = pd.DataFrame(cabecalho).T
 
    
     df_completa = criador_de_linhas(lista,df)
-
     return df_completa
 
   

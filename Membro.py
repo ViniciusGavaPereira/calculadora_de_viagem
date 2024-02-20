@@ -12,9 +12,6 @@ class Membro():
 
         index_encontrado = self.pegar_nome(dic['Nome'])
 
-        'print("Self:",self.nome.strip())'
-        'print("Dic:",dic[''Nome''].strip())'
-
         if(index_encontrado != None) & (self.nome.strip() != dic['Nome'].strip()):
                 self.receber[index_encontrado]['Valor'] = round(self.receber[index_encontrado]['Valor'] + dic['Valor'],2)
         else:

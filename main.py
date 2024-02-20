@@ -64,9 +64,9 @@ while(loop < len(db.axes[1])):
 
 dataframe = criar_dataframe(lista_membros,membros)
 
-print("Esta aqui")
+final = pd.DataFrame(dataframe)
+print(final)
 
-print(dataframe)
-'print(vars(lista_membros[1]))'
+final.to_excel("C:/Users/vini-/Downloads/FinancasViagem.xlsx",sheet_name='resultado',index=False,header=False)
 
 
