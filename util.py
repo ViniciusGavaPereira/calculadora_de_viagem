@@ -37,7 +37,7 @@ def objeto_para_lista_recebedor(lista) -> list:
 
 def criador_de_linhas(lista,dt):
     pagantes = gerador_lista_2(lista)
-
+    dt_Dataframe = pd.DataFrame(dt)
  
     for x in range(len(lista)):
      
@@ -48,13 +48,15 @@ def criador_de_linhas(lista,dt):
       
       nova_linha = criador_de_celula(nova_linha, pagantes[x],dt)
 
-      print('Nova linha: ' , nova_linha)
               
-      dt.loc[len(dt)] = nova_linha
+      teste = pd.DataFrame([nova_linha])
+      print('Dt', dt)
+      print("TEste: " , teste)
+      dt_Dataframe = dt_Dataframe.append(teste.T,ignore_index=True)
       
 
   
-    print(dt)
+    print(dt_Dataframe)
 
 
       
