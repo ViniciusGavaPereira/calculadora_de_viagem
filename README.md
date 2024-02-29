@@ -5,7 +5,8 @@ Este sistema foi criado pensando em auxiliar amigos a fazerem os calculos dos se
 ## Base de dados
 
 A base utilizada para consumo, é uma planilha .xlsx que armazena as informações dos gastos da viagem. É importânte que ela mantenha o padrão apresentado a seguir:
-Ela pode ser encontrada neste Github, no caminho: calculadora_de_viagem/dados/BalancoViagem.xlsx
+
+A planilha pode ser encontrada neste Github, no caminho: calculadora_de_viagem/dados/BalancoViagem.xlsx
 
 ![image](https://github.com/ViniciusGavaPereira/calculadora_de_viagem/assets/74336299/4d95f9eb-b304-4053-a8a0-00bf99279c21)
 
